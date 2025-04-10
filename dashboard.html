@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - xM Release Gateway</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+    <link rel="apple-touch-icon" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+</head>
+<body>
+    <div class="beta-banner" id="betaBanner">
+        <strong>🧪 Beta Experience</strong>
+        This is a beta version of xxavvMusik Release Gateway. Features and functionality will improve regularly.
+        <button class="dismiss-btn" onclick="dismissBanner()">×</button>
+    </div>
+    <div class="dashboard-container">
+        <nav>
+            <div class="logo">
+                <img src="https://d2zcpib8duehag.cloudfront.net/xm2025t.png" alt="xxavvMusik Logo" class="logo-img" style="width: 40px; height: 40px;">
+                <span>xM Release Gateway</span>
+            </div>
+            <div class="nav-links">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <a href="submit.html" class="nav-btn submit-release-btn">
+                    <span class="icon">+</span>
+                    Submit New Release
+                </a>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+        
+        <div class="dashboard-layout">
+            <main>
+                <div class="welcome-section">
+                    <div class="welcome-content">
+                        <h1>Welcome back, <span id="artistName">Artist</span></h1>
+                        <p>Your music distribution hub</p>
+                    </div>
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <h3>Total Releases</h3>
+                            <p class="stat-number" id="totalReleases">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Releases</h3>
+                            <p class="stat-number" id="activeReleases">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Pending Review</h3>
+                            <p class="stat-number" id="pendingReleases">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <a href="submit.html" class="action-btn">
+                            <span class="icon">📝</span>
+                            New Release
+                        </a>
+                        <button class="action-btn" id="continueLastDraft">
+                            <span class="icon">📄</span>
+                            Continue Draft
+                        </button>
+                        <button class="action-btn" id="checkStatus">
+                            <span class="icon">🔍</span>
+                            Check Status
+                        </button>
+                        <a href="https://musik.xxavvgroup.com/helpcenter" class="action-btn" target="_blank">
+                            <span class="icon">💬</span>
+                            Get Support
+                        </a>
+                    </div>
+                </div>
+
+                <div class="releases-container">
+                    <div class="releases-header">
+                        <h2>Your Releases</h2>
+                        <div class="releases-controls">
+                            <select id="sortReleases">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="name">Name A-Z</option>
+                            </select>
+                            <select id="filterReleases">
+                                <option value="all">All Releases</option>
+                                <option value="active">Active</option>
+                                <option value="pending">Pending</option>
+                                <option value="drafts">Drafts</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="releases-grid">
+                        <!-- Releases will be populated here -->
+                    </div>
+                </div>
+
+                <div class="activity-feed">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+            </main>
+
+            <aside class="help-panel">
+                <div class="help-content">
+                    <h2>Need More?</h2>
+                    <p>Check out some of our articles to help you create a new release at xxavvMusik!</p>
+
+                    <div class="help-reminder">
+                        <strong>Reminder:</strong> all tracks must be longer than 60s and must not have 30s or more of silence.
+                    </div>
+
+                    <div class="help-links">
+                        <h3>Helpful Articles:</h3>
+                        <ul>
+                            <li><a href="https://musik.xxavvgroup.com/helpcenterarticles/best-practices%3A-creating-a-new-release">Best Practices: Creating a new release</a></li>
+                            <li><a href="https://musik.xxavvgroup.com/helpcenterarticles/best-practices%3A-submitting-releases-early">Best Practices: Submitting releases early</a></li>
+                            <li><a href="https://musik.xxavvgroup.com/helpcenterarticles/cover-art-requirements-at-xxavvmusik">Cover art requirements</a></li>
+                            <li><a href="https://musik.xxavvgroup.com/helpcenterarticles/dsp-standards-and-xxavvmusik-distribution-requirements">DSP Standards & xxavvMusik requirements</a></li>
+                            <li><a href="https://musik.xxavvgroup.com/helpcenterarticles/why-you-need-a-license-to-distribute-unoriginal-tracks">Why you need a license to distribute unoriginal tracks</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="help-note">
+                        <strong>Need details?</strong>
+                        <p>Go to MyReleases (dashboard.html) in order to check the latest status of your release after submitting it. Additionally, you will receive emails for every stage your release goes through after submission!</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div id="statusModal" class="modal">
+            <div class="modal-content">
+                <h2>Release Status Check</h2>
+                <div class="status-results">
+                    <!-- Status results will be shown here -->
+                </div>
+                <button class="modal-close">Close</button>
+            </div>
+        </div>
+
+        <div id="youtubeModal" class="modal">
+            <div class="modal-content">
+                <h2>YouTube Content ID Requirements</h2>
+                <div class="youtube-requirements">
+                    <h3>Getting monetized on YouTube can be a great thing but...</h3>
+                    <p class="subtitle">*You must meet all of their requirements first.*</p>
+
+                    <div class="requirements-list">
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>Original Audio</strong>
+                                <p>Ensure that your release contains only audio that you've personally created—no borrowed beats, loops, or samples.</p>
+                            </div>
+                        </label>
+
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>No Public Sources</strong>
+                                <p>Avoid using audio from sample packs, public sources (like Splice or GarageBand), or other people's music.</p>
+                            </div>
+                        </label>
+
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>Remix and Conflicts</strong>
+                                <p>Commit to not allowing remixes of this release or using its sounds in other songs to prevent Content ID conflicts.</p>
+                            </div>
+                        </label>
+
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>No Public Domain or External Sounds</strong>
+                                <p>Make sure your release doesn't include public domain recordings, video game sounds, or audio from TV shows or movies.</p>
+                            </div>
+                        </label>
+
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>Sole Ownership</strong>
+                                <p>You should be the sole person adding this single to YouTube Content ID—no other band members or producers attempting to do so.</p>
+                            </div>
+                        </label>
+
+                        <label class="requirement-item">
+                            <input type="checkbox" required>
+                            <div class="requirement-text">
+                                <strong>Independent Submission</strong>
+                                <p>Confirm that you haven't used another company (such as TuneCore, DistroKid, or CD Baby) to submit this release to YouTube Content ID. If you are signed to xxavvMusik, you likely already get a pass on this.</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="warning">
+                        <p>If you're found in violation of any of the requirements listed here, <strong>you may be subject to penalization.</strong></p>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="cancel-btn">No, I don't meet these requirements</button>
+                        <button class="confirm-btn">Yes, I meet all requirements</button>
+                    </div>
+                </div>
+                <button class="modal-close">×</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>const supabaseJs = window.supabase;</script>
+    <script src="config.js"></script>
+    <script src="activity.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

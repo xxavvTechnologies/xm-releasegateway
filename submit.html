@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Release - xxavvMusik</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="submit.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+    <link rel="apple-touch-icon" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+</head>
+<body>
+    <div class="beta-banner" id="betaBanner">
+        <strong>🧪 Beta Experience</strong>
+        This is a beta version of xxavvMusik Release Gateway. Features and functionality will improve regularly.
+        <button class="dismiss-btn" onclick="dismissBanner()">×</button>
+    </div>
+    <div class="dashboard-container">
+        <nav>
+            <div class="logo">
+                <img src="https://d2zcpib8duehag.cloudfront.net/xm2025t.png" alt="xxavvMusik Logo" class="logo-img" style="width: 40px; height: 40px;">
+                <span>xxavvMusik Release Gateway</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-btn">Back to Dashboard</a>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+        
+        <main>
+            <h1>Submit New Release</h1>
+            <div class="form-progress">
+                <div class="progress-step active" data-step="1">Basic Info</div>
+                <div class="progress-step" data-step="2">Distribution</div>
+                <div class="progress-step" data-step="3">Tracks</div>
+            </div>
+
+            <form id="releaseForm" class="release-form">
+                <!-- Page 1 -->
+                <div class="form-page" data-page="1">
+                    <div class="form-group">
+                        <label>Release Title*</label>
+                        <input type="text" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Release Description*</label>
+                        <textarea name="description" required 
+                            placeholder="For xM DiScover formatting. Type 'none' if you don't want one, or 'write one for me' if you want us to write it."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Genre*</label>
+                        <select name="genre" required>
+                            <!-- Genres will be added dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Release Language*</label>
+                        <select name="language" required>
+                            <!-- Languages will be added dynamically -->
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Primary Artist*</label>
+                        <input type="text" name="primaryArtist" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Secondary Artists</label>
+                        <input type="text" name="secondaryArtists" placeholder="Separate by commas">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Copyright Holder*</label>
+                        <input type="text" name="copyrightHolder" required>
+                        <small>Use your real name (recommended) or artist name</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cover Art Options*</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="requestCoverArt" name="requestCoverArt">
+                            <label for="requestCoverArt">Request cover art creation</label>
+                        </div>
+                        
+                        <div id="coverArtUpload">
+                            <div class="upload-area" id="artworkArea">
+                                <p>Upload cover art (3000x3000px, JPG/JPEG, max 10MB)</p>
+                                <input type="file" accept=".jpg,.jpeg" name="coverArt">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Advanced Options</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="showAdvanced" name="showAdvanced">
+                            <label for="showAdvanced">Show advanced options</label>
+                        </div>
+                        
+                        <div id="advancedOptions" style="display: none;">
+                            <input type="text" name="releaseVersion" placeholder="Release Version">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Re-release Options</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isRerelease" name="isRerelease">
+                            <label for="isRerelease">This is a re-release</label>
+                        </div>
+                        
+                        <div id="rereleaseOptions" style="display: none;">
+                            <input type="text" name="upcCode" placeholder="UPC Code">
+                            <input type="date" name="originalReleaseDate">
+                        </div>
+                    </div>
+
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Page 2 -->
+                <div class="form-page" data-page="2" style="display: none;">
+                    <div class="form-group">
+                        <label>Store Delivery</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="deliverAsap" name="deliverAsap" checked>
+                            <label for="deliverAsap">Deliver as soon as possible</label>
+                        </div>
+                        
+                        <div id="releaseDatePicker" style="display: none;">
+                            <input type="date" name="releaseDate">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="enrollEpp" name="enrollEpp">
+                            <label for="enrollEpp">Enroll to xM DiScover EPP</label>
+                            <button type="button" class="learn-more-btn">Learn More</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Exclusivity*</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="isExclusive" name="isExclusive">
+                            <label for="isExclusive">This is an exclusive release</label>
+                        </div>
+                        
+                        <div id="exclusiveOptions" style="display: none;">
+                            <p class="subtitle">Select which platforms you want to distribute to:</p>
+                            <div class="store-list">
+                                <!-- Stores will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="exclusiveToXm" name="exclusiveToXm">
+                            <label for="exclusiveToXm">Exclusive To xM DiScover</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="youtubeContentId" name="youtubeContentId">
+                            <label for="youtubeContentId">Deliver to YouTube Content ID</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+
+                <!-- Page 3 -->
+                <div class="form-page" data-page="3" style="display: none;">
+                    <div class="form-group">
+                        <label>Upload Tracks (.wav or .flac)*</label>
+                        <div class="upload-area" id="trackUploadArea">
+                            <p>Upload audio files (WAV/FLAC, max 60MB per track)</p>
+                            <input type="file" accept=".wav,.flac" multiple>
+                        </div>
+                        <small>Tracks must be longer than 60s and must not have 30s or more of silence</small>
+                    </div>
+
+                    <div id="tracksList">
+                        <!-- Tracks will be added here dynamically -->
+                    </div>
+
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="submit" class="submit-btn">Submit Release</button>
+                </div>
+            </form>
+
+            <div id="youtubeModal" class="modal">
+                <div class="modal-content">
+                    <h2>YouTube Content ID Requirements</h2>
+                    <div class="youtube-requirements">
+                        <h3>Getting monetized on YouTube can be a great thing but...</h3>
+                        <p class="subtitle">*You must meet all of their requirements first.*</p>
+
+                        <div class="requirements-list">
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>Original Audio</strong>
+                                    <p>Ensure that your release contains only audio that you've personally created—no borrowed beats, loops, or samples.</p>
+                                </div>
+                            </label>
+
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>No Public Sources</strong>
+                                    <p>Avoid using audio from sample packs, public sources (like Splice or GarageBand), or other people's music.</p>
+                                </div>
+                            </label>
+
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>Remix and Conflicts</strong>
+                                    <p>Commit to not allowing remixes of this release or using its sounds in other songs to prevent Content ID conflicts.</p>
+                                </div>
+                            </label>
+
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>No Public Domain or External Sounds</strong>
+                                    <p>Make sure your release doesn't include public domain recordings, video game sounds, or audio from TV shows or movies.</p>
+                                </div>
+                            </label>
+
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>Sole Ownership</strong>
+                                    <p>You should be the sole person adding this single to YouTube Content ID—no other band members or producers attempting to do so.</p>
+                                </div>
+                            </label>
+
+                            <label class="requirement-item">
+                                <input type="checkbox" required>
+                                <div class="requirement-text">
+                                    <strong>Independent Submission</strong>
+                                    <p>Confirm that you haven't used another company (such as TuneCore, DistroKid, or CD Baby) to submit this release to YouTube Content ID. If you are signed to xxavvMusik, you likely already get a pass on this.</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="warning">
+                            <p>If you're found in violation of any of the requirements listed here, <strong>you may be subject to penalization.</strong></p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="cancel-btn">No, I don't meet these requirements</button>
+                            <button class="confirm-btn">Yes, I meet all requirements</button>
+                        </div>
+                    </div>
+                    <button class="modal-close">×</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>const supabaseJs = window.supabase;</script>
+    <script src="config.js"></script>
+    <script src="constants.js"></script>
+    <script src="submit.js"></script>
+</body>
+</html>

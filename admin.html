@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - xxavvMusik</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+    <link rel="apple-touch-icon" href="https://d2zcpib8duehag.cloudfront.net/xm2025t.png">
+</head>
+<body>
+    <div class="beta-banner" id="betaBanner">
+        <strong>🧪 Beta Experience</strong>
+        Admin tools are in beta. Features and functionality will improve regularly.
+        <button class="dismiss-btn" onclick="dismissBanner()">×</button>
+    </div>
+    <div class="dashboard-container">
+        <nav>
+            <div class="logo">
+                <img src="https://d2zcpib8duehag.cloudfront.net/xm2025t.png" alt="xxavvMusik Logo" class="logo-img" style="width: 40px; height: 40px;">
+                <span>xxavvMusik Admin</span>
+            </div>
+            <div class="nav-links">
+                <button id="pendingBtn" class="nav-btn active">Pending</button>
+                <button id="approvedBtn" class="nav-btn">Approved</button>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </nav>
+        
+        <main>
+            <div id="releaseDetails" class="release-details" style="display: none;">
+                <!-- Release details will be populated here -->
+                <button class="close-btn">Close</button>
+            </div>
+            <div class="releases-grid">
+                <!-- Releases will be populated here -->
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>const supabaseJs = window.supabase;</script>
+    <script src="config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
