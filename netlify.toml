@@ -1,6 +1,7 @@
 [build]
   publish = "/"
-  command = "# no build command needed"
+  functions = "functions"
+  command = "npm install"
 
 [[redirects]]
   from = "/*.html"
@@ -33,6 +34,8 @@
 
 [functions]
   directory = "functions"
+  external_node_modules = ["@supabase/supabase-js"]
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/*"
